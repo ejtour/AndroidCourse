@@ -1,4 +1,4 @@
-package com.drak.course
+package com.drak.application
 
 import android.annotation.TargetApi
 import android.app.Application
@@ -7,9 +7,12 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import androidx.multidex.MultiDex
+import com.drak.Constant
 import com.tencent.bugly.Bugly
+import com.tencent.bugly.Bugly.applicationContext
 import com.tencent.bugly.beta.Beta
 import com.tencent.tinker.entry.DefaultApplicationLike
+import kotlin.properties.Delegates
 
 /**
  * @author BuMingYang
@@ -27,11 +30,24 @@ class ApplicationLike(
     applicationStartMillisTime,
     tinkerResultIntent
 ) {
+
+    companion object {
+
+        var context: Context by Delegates.notNull()
+            private set
+
+        lateinit var instance: Application
+
+    }
+
     override fun onCreate() {
         super.onCreate()
+        instance = application
+        context = application.applicationContext
+
         // 这里实现SDK初始化，appId替换成你的在Bugly平台申请的appId
         // 调试时，将第三个参数改为true
-        Bugly.init(application, "b980a3e9c9", true)
+        Bugly.init(application, Constant.BUGLY_KEY, true)
     }
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
