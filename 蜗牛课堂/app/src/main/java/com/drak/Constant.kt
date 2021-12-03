@@ -63,6 +63,8 @@ object Constant {
         const val SCAN_QR_CODE_TYPE_KEY = "scan_qr_code_type_key"
     }
 
+    //dev2 新建一个类
+
 
 
 }
