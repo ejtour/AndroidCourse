@@ -10,4 +10,9 @@ interface ApiService {
 
     }
 
+    // ctrl + L  快速清除Terminal 屏幕
+
+    // dev 执行流程  git add  / git push
+
+
 }
